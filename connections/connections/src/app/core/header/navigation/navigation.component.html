@@ -1,0 +1,22 @@
+<div class="navigation">
+  <div
+    class="theme-switcher"
+    (mousedown)="toggleTheme()"
+    role="button"
+    tabindex="0"
+    (keydown.enter)="toggleTheme()"
+  >
+    <mat-icon *ngIf="isLightMode"
+      ><span class="material-symbols-outlined"> light_mode</span></mat-icon
+    >
+    <mat-icon *ngIf="!isLightMode"
+      ><span class="material-symbols-outlined"> dark_mode</span></mat-icon
+    >
+  </div>
+  <div class="profile-wrapper">
+    <mat-icon
+      ><span class="material-symbols-outlined"> account_circle </span></mat-icon
+    >
+    <a routerLink="profile"> My Profile</a>
+  </div>
+</div>

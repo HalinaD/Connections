@@ -1,0 +1,105 @@
+<div class="registration-page-wrapper">
+  <form
+    [formGroup]="registrationForm"
+    class="registration-page-input-fields"
+    (ngSubmit)="onSubmit()"
+    autocomplete="on"
+  >
+    <h2>Sign up</h2>
+    <label for="username">First Name</label>
+    <input
+      type="text"
+      id="username"
+      placeholder="First Name"
+      formControlName="username"
+      required
+      autocomplete="on"
+    />
+    <div *ngIf="registrationForm.get('username')?.errors" class="errors">
+      <p *ngIf="registrationForm.get('username')?.errors?.['required']">
+        Please enter a name
+      </p>
+      <p *ngIf="registrationForm.get('username')?.errors?.['pattern']">
+        Only letters and spaces are allowed
+      </p>
+      <p *ngIf="registrationForm.get('username')?.errors?.['maxlength']">
+        Name must be at most 40 characters long
+      </p>
+    </div>
+
+    <label for="useremail">Email</label>
+    <input
+      type="text"
+      id="useremail"
+      placeholder="Email"
+      formControlName="useremail"
+      required
+    />
+    <div *ngIf="registrationForm.get('useremail')?.errors" class="errors">
+      <p *ngIf="registrationForm.get('useremail')?.errors?.['required']">
+        Please enter an email
+      </p>
+      <p *ngIf="registrationForm.get('useremail')?.errors?.['email']">
+        The email is invalid
+      </p>
+      <p *ngIf="registrationForm.get('useremail')?.errors?.['emailDuplicate']">
+        Email is already taken. Please use a different email.
+      </p>
+    </div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+      required
+    />
+    <div *ngIf="registrationForm.get('password')?.errors" class="errors">
+      <p *ngIf="registrationForm.get('password')?.errors?.['required']">
+        Please enter a password
+      </p>
+      <p
+        *ngIf="
+          registrationForm.get('password')?.errors?.[
+            'isPasswordStrongEnough'
+          ] &&
+          (registrationForm.get('password')?.errors?.['uppercase'] ||
+            registrationForm.get('password')?.errors?.['number'] ||
+            registrationForm.get('password')?.errors?.['special'])
+        "
+      >
+        Your password isn't strong enough
+      </p>
+      <p *ngIf="registrationForm.get('password')?.errors?.['minlength']">
+        Password must be a minimum of 8 characters long
+      </p>
+      <p *ngIf="registrationForm.get('password')?.errors?.['number']">
+        Password must contain at least one number
+      </p>
+      <p *ngIf="registrationForm.get('password')?.errors?.['uppercase']">
+        Password must contain at least one uppercase letter
+      </p>
+      <p *ngIf="registrationForm.get('password')?.errors?.['special']">
+        Password must contain at least one special character (e.g., ! @ # ? ])
+      </p>
+    </div>
+    <div class="button-link">
+      <div class="registration-page-account-link">
+        <a routerLink="/signin">ALREADY HAVE AN ACCOUNT?</a>
+      </div>
+      <div class="registration-page-submit-button">
+        <button
+          class="submit-button"
+          type="submit"
+          [disabled]="
+            !registrationForm.valid ||
+            isSubmitting ||
+            registrationForm.hasError('emailDuplicate')
+          "
+        >
+          {{ isSubmitting ? "Submitting..." : "Submit" }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

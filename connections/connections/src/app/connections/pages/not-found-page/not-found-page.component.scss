@@ -1,0 +1,26 @@
+@import "../../../../styles.scss";
+
+.not-found-page-wrapper {
+  @extend %page-wrapper;
+  background-color: var(--logo-color-light);
+  color: var(--primary-color-light);
+}
+
+.not-found-page-info {
+  @extend %page-info;
+}
+
+a {
+  @extend %account-link;
+}
+
+.errors {
+  color: var(--error-color);
+  margin-bottom: 1rem;
+}
+
+.errors-url {
+  color: var(--error-color);
+  font-size: 18px;
+  text-decoration: underline;
+}

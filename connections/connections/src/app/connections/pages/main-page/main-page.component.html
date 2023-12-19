@@ -1,0 +1,67 @@
+<div class="main-page">
+  <div class="group-section">
+    <h1>Group</h1>
+    <div class="group-section-wrapper-button">
+      <button
+        (click)="updateGroupList()"
+        [disabled]="isGroupUpdateDisabled"
+        class="group-section-button"
+      >
+        Update
+        <ng-container *ngIf="groupCountdown > 0">
+          ({{ groupCountdown }}s)
+        </ng-container>
+      </button>
+      <button (click)="openCreateGroupModal()" class="group-section-button">
+        Create
+      </button>
+    </div>
+
+    <ul>
+      <li
+        *ngFor="let group of groupList"
+        class="group-list"
+        [ngClass]="{ 'owner-group': isUserGroupOwner(group) }"
+      >
+        <a [routerLink]="'/group/' + group.id.S">{{ group.name.S }}</a>
+        <button
+          *ngIf="isUserGroupOwner(group)"
+          (click)="deleteGroup(group)"
+          class="group-list-delete-button"
+        >
+          ✖
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="people-section">
+    <h1>People</h1>
+    <div class="people-section-wrapper-button">
+      <button
+        (click)="updatePeopleList()"
+        [disabled]="isPeopleUpdateDisabled"
+        class="group-section-button"
+      >
+        Update
+        <ng-container *ngIf="peopleCountdown > 0">
+          ({{ peopleCountdown }}s)
+        </ng-container>
+      </button>
+    </div>
+    <ul>
+      <li
+        *ngFor="let person of peopleList"
+        class="person-list"
+        [ngClass]="{
+          'has-conversation': hasConversationWith(person.uid.S),
+          'active-conversation': hasActiveConversationWith(person.uid.S)
+        }"
+        (click)="onPersonClick(person)"
+        (keyup.enter)="onPersonClick(person)"
+        tabindex="0"
+      >
+        {{ truncateName(person.name.S) }}
+      </li>
+    </ul>
+  </div>
+</div>

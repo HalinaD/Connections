@@ -1,0 +1,26 @@
+@import "../../../styles.scss";
+
+.header {
+  @extend %flex-row-main;
+  background-color: var(--primary-color);
+  flex-direction: row;
+  height: 7vh;
+  padding: 7px;
+  justify-content: space-around;
+}
+
+a {
+  @extend %page__link;
+  @extend %flex-row-main;
+  color: var(--logo-color);
+  font-size: 26px;
+}
+
+a:hover {
+  text-shadow: rgba(255, 255, 255, 0.919) 1px 0 10px;
+  transition: text-shadow 0.2s ease-in-out;
+}
+
+img {
+  width: 40px;
+}

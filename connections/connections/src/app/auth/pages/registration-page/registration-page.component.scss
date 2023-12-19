@@ -1,0 +1,30 @@
+@import "../../../../styles.scss";
+
+.registration-page-wrapper {
+  @extend %page-wrapper;
+  background-color: var(--secondary-color-light);
+
+  .registration-page-input-fields {
+    @extend %page-info;
+    input {
+      @extend %search-input;
+    }
+    button {
+      @extend %secondary_light_button;
+      justify-content: space-evenly;
+    }
+  }
+
+  .errors {
+    @extend %form_errors;
+  }
+
+  .registration-page-account-link a {
+    @extend %account-link;
+  }
+
+  .button-link {
+    @extend %flex-row-main;
+    margin-top: 1rem;
+  }
+}

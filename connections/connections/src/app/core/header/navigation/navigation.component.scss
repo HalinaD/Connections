@@ -1,0 +1,22 @@
+@import "../../../../styles.scss";
+
+.navigation {
+  @extend %flex-row-main;
+  background-color: var(--navigation-color-light);
+  height: 2.5vh;
+  padding: 7px;
+}
+
+.profile-wrapper {
+  @extend %flex-row-main;
+}
+
+a {
+  @extend %button__link;
+  margin-right: 1vw;
+  transition: background-color 0.4s ease-in-out;
+}
+
+.theme-switcher {
+  margin-left: 1vw;
+}

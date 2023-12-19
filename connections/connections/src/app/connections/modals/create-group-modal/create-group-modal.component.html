@@ -1,0 +1,30 @@
+<div class="modal-window">
+  <form [formGroup]="createGroupForm">
+    <h2>Create Group</h2>
+    <div class="modal-window-input">
+      <label for="groupName">Group Name:</label>
+      <input id="groupName" type="text" formControlName="groupName" />
+    </div>
+    <div class="error">
+      <div *ngIf="createGroupForm.get('groupName')?.hasError('required')">
+        Please enter a group name
+      </div>
+      <div *ngIf="createGroupForm.get('groupName')?.hasError('maxlength')">
+        Group name must be at most 30 characters long
+      </div>
+      <div *ngIf="createGroupForm.get('groupName')?.hasError('pattern')">
+        Group name can only contain letters, digits, spaces, or start with a spaces
+      </div>
+    </div>
+    <div class="modal-window-buttons">
+      <button type="button" (click)="onCancelClick()">Cancel</button>
+      <button
+        type="button"
+        [disabled]="isCreatingGroup || createGroupForm.invalid"
+        (click)="onCreateGroupClick()"
+      >
+        Create
+      </button>
+    </div>
+  </form>
+</div>

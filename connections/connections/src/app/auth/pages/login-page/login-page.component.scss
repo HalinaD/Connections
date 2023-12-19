@@ -1,0 +1,30 @@
+@import "../../../../styles.scss";
+
+.login-page-wrapper {
+  @extend %page-wrapper;
+  background-color: var(--tertiary-color-light);
+}
+
+.login-page-input-fields {
+  @extend %page-info;
+  input {
+    @extend %search-input;
+  }
+  button {
+    @extend %secondary_dark_button;
+    justify-content: space-evenly;
+  }
+}
+
+.errors {
+  @extend %form_errors;
+}
+
+.login-page-account-link a {
+  @extend %account-link;
+}
+
+.button-link {
+  @extend %flex-row-main;
+  margin-top: 1rem;
+}

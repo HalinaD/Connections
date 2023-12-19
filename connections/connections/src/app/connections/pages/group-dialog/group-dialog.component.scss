@@ -1,0 +1,37 @@
+@import "../../../../styles.scss";
+
+.group-dialog-page {
+  background-color: var(--light-theme-background-color-light);
+  display: flex;
+  min-height: 100vh;
+}
+
+.group-dialog {
+  @extend %chat-content;
+}
+
+.group-dialog-wrapper-button {
+  @extend %chat-content-button;
+}
+.group-dialog-wrapper-button button {
+  @extend %chat-button;
+  @extend %tertiary_button;
+}
+a {
+  @extend %chat-link;
+}
+
+.messages {
+  @extend %messages;
+}
+
+.message {
+  @extend %message;
+  &.owner {
+    background-color: var(--light-theme-secondary-dialog-owner-color-light);
+  }
+}
+
+.new-message {
+  @extend %new-message;
+}

@@ -1,0 +1,53 @@
+<div class="login-page-wrapper">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+    class="login-page-input-fields"
+    autocomplete="on"
+  >
+    <h2>Login</h2>
+    <label for="useremail">Email</label>
+    <input
+      type="email"
+      id="useremail"
+      placeholder="Email"
+      formControlName="useremail"
+      required
+      (input)="resetNotFoundException()"
+    />
+    <div *ngIf="loginForm.get('useremail')?.errors" class="errors">
+      <p *ngIf="loginForm.get('useremail')?.errors?.['required']">
+        Please enter a login email
+      </p>
+      <p *ngIf="loginForm.get('useremail')?.errors?.['email']">
+        The login email is invalid
+      </p>
+    </div>
+
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+      required
+      (input)="resetNotFoundException()"
+    />
+    <div *ngIf="loginForm.get('password')?.errors" class="errors">
+      <p *ngIf="loginForm.get('password')?.errors?.['required']">
+        Please enter a password
+      </p>
+    </div>
+    <div class="button-link">
+      <div class="login-page-account-link">
+        <a routerLink="/signup">DON'T HAVE AN ACCOUNT?</a>
+      </div>
+      <button
+        type="submit"
+        [disabled]="!loginForm.valid || isLogining || isNotFoundException"
+      >
+        {{ isLogining ? "Logining..." : "Login" }}
+      </button>
+    </div>
+  </form>
+</div>
