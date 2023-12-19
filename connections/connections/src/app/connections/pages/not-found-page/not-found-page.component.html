@@ -1,0 +1,17 @@
+<div class="not-found-page-wrapper">
+  <div class="not-found-page-info">
+    <h1>404 - Not Found</h1>
+    <p class="errors">
+      Sorry, the page you are looking for at
+      <span class="errors-url">{{ currentUrl }}</span> does not exist...
+    </p>
+    <div class="not-found-page-account-link">
+      <ng-container *ngIf="isAuthenticated(); else notAuthenticated">
+        <a routerLink="/">GO TO THE MAIN PAGE</a>
+      </ng-container>
+      <ng-template #notAuthenticated>
+        <a routerLink="/auth/signin">GO TO THE LOGIN PAGE</a>
+      </ng-template>
+    </div>
+  </div>
+</div>

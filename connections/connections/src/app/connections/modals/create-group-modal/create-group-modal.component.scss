@@ -1,0 +1,34 @@
+@import "../../../../styles.scss";
+
+.modal-window {
+  @extend %modal-window;
+}
+
+.modal-window-input {
+  @extend %flex-row-main;
+  margin-bottom: 1rem;
+  justify-content: space-evenly;
+}
+
+input {
+  @extend %search-input;
+  height: 30px;
+  min-width: 60%;
+}
+
+form {
+  @extend %modal-window-content;
+}
+
+.modal-window-buttons {
+  @extend %modal-window-buttons;
+}
+
+button {
+  justify-content: space-around;
+  @extend %tertiary_button;
+}
+
+.error {
+  color: var(--error-color-light);
+}

@@ -1,0 +1,74 @@
+<button
+  (click)="logout()"
+  [disabled]="isUpdating"
+  class="logout-button"
+  matTooltip="Logout"
+>
+  <mat-icon><span class="material-symbols-outlined"> logout </span></mat-icon>
+</button>
+<div class="profile-page-wrapper">
+  <div class="profile-page-info">
+    <h2>User Profile</h2>
+    <div *ngIf="!isEditMode">
+      <p class="profile-page-info-title">User ID</p>
+      <p class="profile-page-info-field">{{ userProfile?.uid?.S }}</p>
+      <p class="profile-page-info-title">Email</p>
+      <p class="profile-page-info-field">{{ userProfile?.email?.S }}</p>
+      <p class="profile-page-info-title">Creation Time</p>
+      <p class="profile-page-info-field">
+        {{ userProfile?.createdAt?.S | date: "medium" }}
+      </p>
+      <p class="profile-page-info-title">User Name</p>
+      <p class="profile-page-info-field">{{ userProfile?.name?.S }}</p>
+      <button (click)="enableEditMode()" class="profile-form-button">
+        Edit
+      </button>
+    </div>
+
+    <div *ngIf="isEditMode">
+      <p class="profile-page-info-title">User ID</p>
+      <p class="profile-page-info-field">{{ userProfile?.uid?.S }}</p>
+      <p class="profile-page-info-title">Email</p>
+      <p class="profile-page-info-field">{{ userProfile?.email?.S }}</p>
+      <p class="profile-page-info-title">Creation Time</p>
+      <p class="profile-page-info-field">
+        {{ userProfile?.createdAt?.S | date: "medium" }}
+      </p>
+      <label for="updatedName" class="update-name">Updated Name</label>
+      <div *ngIf="nameForm">
+        <input
+          class="input-update-name"
+          autocomplete="on"
+          id="updatedName"
+          [formControl]="updatedNameControl"
+        />
+        <div *ngIf="updatedNameControl.hasError('required')" class="error">
+          Please enter a name
+        </div>
+        <div *ngIf="updatedNameControl.hasError('pattern')" class="error">
+          Only letters and spaces are allowed
+        </div>
+        <div *ngIf="updatedNameControl.hasError('maxlength')" class="error">
+          Name must be at most 40 characters long
+        </div>
+      </div>
+      <button
+        (click)="saveUpdatedName()"
+        [disabled]="nameForm.invalid || isUpdating"
+        class="profile-form-button"
+      >
+        {{ isUpdating ? "Saving..." : "Save" }}
+      </button>
+      <button
+        (click)="cancelEditMode()"
+        [disabled]="nameForm.invalid || isUpdating"
+        class="profile-form-button"
+      >
+        Cancel
+      </button>
+    </div>
+    <div *ngIf="!userProfile" class="load-error">
+      <p>Error loading profile. Please try again later.</p>
+    </div>
+  </div>
+</div>

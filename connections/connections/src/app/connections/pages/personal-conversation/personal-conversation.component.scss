@@ -1,0 +1,37 @@
+@import "../../../../styles.scss";
+
+.conversation-page {
+  background-color: var(--light-theme-secondary-background-color-light);
+  display: flex;
+  min-height: 100vh;
+}
+
+.personal-conversation {
+  @extend %chat-content;
+}
+
+.conversation-wrapper-button {
+  @extend %chat-content-button;
+}
+.conversation-wrapper-button button {
+  @extend %chat-button;
+  @extend %primary_light_button;
+}
+a {
+  @extend %chat-link;
+}
+
+.messages {
+  @extend %messages;
+}
+
+.message {
+  @extend %message;
+  &.owner {
+    background-color: var(--light-theme-primary-dialog-owner-color-light);
+  }
+}
+
+.new-message {
+  @extend %new-message;
+}

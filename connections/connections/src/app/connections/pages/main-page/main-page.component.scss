@@ -1,0 +1,114 @@
+@import "../../../../styles.scss";
+h1 {
+  margin-left: 2rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: var(--dark-primary-color);
+  text-shadow: rgba(199, 199, 199, 0.8) 1px 0 10px;
+  font-size: 2vw;
+}
+li {
+  @extend %flex-row-main;
+  background-color: var(--dark-theme-secondary-color-light);
+  height: 40px;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  font-size: 1.8vw;
+  padding: 0.2rem 0.5rem;
+  word-break: break-all;
+  letter-spacing: normal;
+  line-height: 0.9rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  &:hover:not(:disabled) {
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.919);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+}
+.main-page {
+  display: flex;
+}
+
+.group-section {
+  width: 50%;
+  background-color: var(--light-theme-primary-color-dark);
+}
+
+.people-section {
+  background-color: var(--light-theme-tertiary-color-dark);
+  width: 50%;
+}
+
+a {
+  @extend %flex-row-main;
+  @extend %page__link;
+  font-size: 1.8vw;
+  width: 100%;
+  letter-spacing: normal;
+  height: 100%;
+}
+
+.owner-group {
+  background-color: var(--text-light-color);
+}
+
+ul {
+  padding: 0 4rem;
+}
+
+.group-section-button {
+  @extend %primary_light_button;
+  @extend %chat-button;
+}
+
+.group-section-wrapper-button {
+  @extend %flex-row-main;
+  width: 80%;
+  margin: auto;
+}
+
+.people-section-wrapper-button {
+  @extend %flex-row-main;
+  justify-content: space-around;
+}
+
+.group-list-delete-button {
+  justify-content: space-around;
+  @extend %primary_light_button;
+}
+
+.active-conversation {
+  background-color: var(--text-light-secondary-color);
+}
+
+.people-section li {
+  margin-bottom: 0px;
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.people-section ul {
+  @extend %flex-grid-main;
+  height: 60%;
+  gap: 0.5rem;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  ul {
+    padding: 0 1rem;
+  }
+  li,
+  a {
+    font-size: 1rem;
+    min-height: 40px;
+    height: max-content;
+  }
+  h1 {
+    font-size: 1.2rem;
+  }
+  .group-section-button {
+    margin: 0 0.2rem;
+  }
+}

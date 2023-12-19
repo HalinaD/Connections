@@ -1,0 +1,54 @@
+<div class="group-dialog-page">
+  <div class="group-dialog">
+    <a routerLink="/">← Back to main page</a>
+    <div class="group-dialog-wrapper-button">
+      <button
+        (click)="updateMessageGroupList()"
+        [disabled]="isGroupMessageUpdateDisabled"
+      >
+        Update
+        <span *ngIf="groupMessageCountdown > 0"
+          >({{ groupMessageCountdown }}s)</span
+        >
+      </button>
+      <button *ngIf="isGroupOwner" (click)="deleteGroup()">Delete Group</button>
+    </div>
+    <div class="messages">
+      <div
+        class="message"
+        *ngFor="let message of messages"
+        [ngClass]="{
+          owner: isMessageOwner(message.authorID.S),
+          other: !isMessageOwner(message.authorID.S)
+        }"
+      >
+        <span class="date">{{
+          message.createdAt.S | date: "yyyy/MM/dd HH:mm"
+        }}</span>
+        <div *ngIf="isMessageOwner(message.authorID.S); else notOwner">
+          <span class="author"> Me </span>
+        </div>
+        <ng-template #notOwner>
+          <span class="author">{{
+            usersNames[message.authorID.S] || "User not found"
+          }}</span>
+        </ng-template>
+        <div class="content">{{ message.message.S }}</div>
+      </div>
+    </div>
+    <div class="new-message">
+      <form
+        [formGroup]="messageForm"
+        (ngSubmit)="sendMessage(messageForm.value.message)"
+      >
+        <input
+          formControlName="message"
+          type="text"
+          placeholder="Your Message"
+          placeholder="Your Message"
+        />
+        <button type="submit" [disabled]="!messageForm.valid">Send</button>
+      </form>
+    </div>
+  </div>
+</div>

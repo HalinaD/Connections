@@ -1,0 +1,16 @@
+@import "../../../../styles.scss";
+
+.modal-window,
+.modal-window-content {
+  @extend %modal-window;
+}
+
+button {
+  justify-content: space-around;
+  @extend %tertiary_button;
+}
+
+.modal-window-buttons {
+  @extend %modal-window-buttons;
+  width: 90%;
+}

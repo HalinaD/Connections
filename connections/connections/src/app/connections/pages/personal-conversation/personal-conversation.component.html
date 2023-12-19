@@ -1,0 +1,50 @@
+<div class="conversation-page">
+  <div class="personal-conversation">
+    <a routerLink="/">← Back to main page</a>
+    <div class="conversation-wrapper-button">
+      <button
+        (click)="updateMessageConversationList()"
+        [disabled]="isConversationMessageUpdateDisabled"
+      >
+        Update
+        <span *ngIf="conversationMessageCountdown > 0"
+          >({{ conversationMessageCountdown }}s)</span
+        >
+      </button>
+      <button (click)="deleteConversation()">Delete Conversation</button>
+    </div>
+    <div class="messages">
+      <div
+        class="message"
+        *ngFor="let message of messages"
+        [ngClass]="{
+          owner: isMessageOwner(message.authorID.S),
+          other: !isMessageOwner(message.authorID.S)
+        }"
+      >
+        <span class="date">{{
+          message.createdAt.S | date: "yyyy/MM/dd HH:mm"
+        }}</span>
+        <div *ngIf="isMessageOwner(message.authorID.S); else notOwner">
+          <span class="author"> Me </span>
+        </div>
+        <ng-template #notOwner>
+          <span class="author">{{
+            usersNames[message.authorID.S] || "User not found"
+          }}</span>
+          {{ usersNames[message.authorID.S] }}
+        </ng-template>
+        <div class="content">{{ message.message.S }}</div>
+      </div>
+    </div>
+    <div class="new-message">
+      <form
+        [formGroup]="messageForm"
+        (ngSubmit)="sendMessage(messageForm.value.message)"
+      >
+        <input formControlName="message" type="text" />
+        <button type="submit" [disabled]="!messageForm.valid">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
